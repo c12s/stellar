@@ -1,9 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"github.com/c12s/stellar/server"
 )
 
 func main() {
-	fmt.Println("DONE")
+
+	//Start Server
+	server.Run("localhost:8086")
 }
