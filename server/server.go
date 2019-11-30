@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	sPb "github.com/c12s/scheme/stellar"
+	"github.com/c12s/stellar/model"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"log"
@@ -19,8 +20,8 @@ func (s *Server) Get(context.Context, *sPb.GetReq) (*sPb.GetResp, error) {
 	return nil, nil
 }
 
-func Run(address string) {
-	lis, err := net.Listen("tcp", address)
+func Run(conf *model.Config) {
+	lis, err := net.Listen("tcp", conf.Address)
 	if err != nil {
 		log.Fatalf("failed to initializa TCP listen: %v", err)
 	}
