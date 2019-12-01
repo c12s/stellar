@@ -35,7 +35,7 @@ func (db *DB) List(ctx context.Context, req *sPb.ListReq) (*sPb.ListResp, error)
 }
 
 func (db *DB) Get(ctx context.Context, req *sPb.GetReq) (*sPb.GetResp, error) {
-	trace := []*sPb.TracePart{}
+	trace := []*sPb.Span{}
 	resp, err := db.Kv.Get(ctx, traceKey(req.TraceId), clientv3.WithPrefix(),
 		clientv3.WithSort(clientv3.SortByKey, clientv3.SortAscend))
 	if err != nil {
@@ -43,7 +43,7 @@ func (db *DB) Get(ctx context.Context, req *sPb.GetReq) (*sPb.GetResp, error) {
 	}
 
 	for _, item := range resp.Kvs {
-		elem := &sPb.TracePart{}
+		elem := &sPb.Span{}
 		err = proto.Unmarshal(item.Value, elem)
 		if err != nil {
 			return nil, err

@@ -1,7 +1,9 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/c12s/scheme v0.0.0-20191130204001-98bc231a1845 h1:cuPqpeYyC96zKHgL6cVlpnHXkpuyXA5h7NfYZJ9Oitg=
-github.com/c12s/scheme v0.0.0-20191130204001-98bc231a1845/go.mod h1:iaQIUyLmrvaYaQR9fFwdb7fyClDZnvGlD8usIGjAp3w=
+github.com/c12s/scheme v0.0.0-20191201020152-ce270df7bd2d h1:NeZZ3uUR+8Ggjv0hvxl1AQHkfthSZnwwzSk7y2HnQYo=
+github.com/c12s/scheme v0.0.0-20191201020152-ce270df7bd2d/go.mod h1:iaQIUyLmrvaYaQR9fFwdb7fyClDZnvGlD8usIGjAp3w=
+github.com/c12s/scheme v0.0.0-20191201115010-f4290206e1b7 h1:bB+KFW/xkoF2d3zV7VorYemQ4T5k3vmuDmHDivecbTw=
+github.com/c12s/scheme v0.0.0-20191201115010-f4290206e1b7/go.mod h1:iaQIUyLmrvaYaQR9fFwdb7fyClDZnvGlD8usIGjAp3w=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/coreos/etcd v3.3.18+incompatible h1:Zz1aXgDrFFi1nadh58tA9ktt06cmPTwNNP3dXwIq1lE=
