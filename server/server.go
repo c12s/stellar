@@ -14,12 +14,12 @@ type Server struct {
 	db storage.DB
 }
 
-func (s *Server) List(context.Context, *sPb.ListReq) (*sPb.ListResp, error) {
-	return nil, nil
+func (s *Server) List(ctx context.Context, req *sPb.ListReq) (*sPb.ListResp, error) {
+	return s.db.List(ctx, req)
 }
 
-func (s *Server) Get(context.Context, *sPb.GetReq) (*sPb.GetResp, error) {
-	return nil, nil
+func (s *Server) Get(ctx context.Context, req *sPb.GetReq) (*sPb.GetResp, error) {
+	return s.db.Get(ctx, req)
 }
 
 func Run(address string, db storage.DB) {
