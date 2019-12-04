@@ -30,7 +30,10 @@ func Run(address string, db storage.DB) {
 	defer lis.Close()
 
 	server := grpc.NewServer()
-	stellarServer := &Server{}
+	stellarServer := &Server{
+		db: db,
+	}
+	db.StartCollector()
 
 	fmt.Println("StellarService RPC Started")
 	sPb.RegisterStellarServiceServer(server, stellarServer)

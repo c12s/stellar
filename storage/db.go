@@ -8,4 +8,5 @@ import (
 type DB interface {
 	List(context.Context, *sPb.ListReq) (*sPb.ListResp, error)
 	Get(context.Context, *sPb.GetReq) (*sPb.GetResp, error)
+	StartCollector()
 }

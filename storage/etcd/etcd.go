@@ -2,8 +2,11 @@ package etcd
 
 import (
 	"context"
+	"fmt"
 	sPb "github.com/c12s/scheme/stellar"
 	"github.com/c12s/stellar/model"
+	sync "github.com/c12s/stellar/storage/sync"
+	"github.com/c12s/stellar/storage/sync/nats"
 	"github.com/coreos/etcd/clientv3"
 	"github.com/golang/protobuf/proto"
 	"time"
@@ -12,6 +15,7 @@ import (
 type DB struct {
 	Kv     clientv3.KV
 	Client *clientv3.Client
+	s      sync.Syncer
 }
 
 func New(conf *model.Config, timeout time.Duration) (*DB, error) {
@@ -24,9 +28,15 @@ func New(conf *model.Config, timeout time.Duration) (*DB, error) {
 		return nil, err
 	}
 
+	ns, err := nats.NewNatsSync(conf.Syncer, conf.STopic)
+	if err != nil {
+		return nil, err
+	}
+
 	return &DB{
 		Kv:     clientv3.NewKV(cli),
 		Client: cli,
+		s:      ns,
 	}, nil
 }
 
@@ -92,4 +102,12 @@ func (db *DB) Get(ctx context.Context, req *sPb.GetReq) (*sPb.GetResp, error) {
 	return &sPb.GetResp{
 		Trace: trace,
 	}, nil
+}
+
+func (db *DB) StartCollector() {
+	db.s.Sub(func(msg *sPb.LogBatch) {
+		go func(data *sPb.LogBatch) {
+			fmt.Println(msg)
+		}(msg)
+	})
 }
