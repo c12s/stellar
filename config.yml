@@ -4,4 +4,4 @@ stellar:
   db:
       - 0.0.0.0:2379 
   syncer: 0.0.0.0:4222
-  stopic: traceTopic
+  stopic: collector
