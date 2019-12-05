@@ -104,10 +104,19 @@ func (db *DB) Get(ctx context.Context, req *sPb.GetReq) (*sPb.GetResp, error) {
 	}, nil
 }
 
-func (db *DB) StartCollector() {
+func (db *DB) StartCollector(ctx context.Context) {
 	db.s.Sub(func(msg *sPb.LogBatch) {
-		go func(data *sPb.LogBatch) {
-			fmt.Println(msg)
+		go func(batch *sPb.LogBatch) {
+			for _, log := range batch.Batch {
+				logData, _ := proto.Marshal(log)
+				keyParts := []string{log.SpanContext.TraceId, log.SpanContext.SpanId}
+				key := formKey(keyParts)
+				fmt.Println(key)
+				_, err := db.Kv.Put(ctx, key, string(logData))
+				if err != nil {
+					fmt.Println(err.Error())
+				}
+			}
 		}(msg)
 	})
 }

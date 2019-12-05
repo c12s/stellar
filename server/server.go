@@ -33,7 +33,10 @@ func Run(address string, db storage.DB) {
 	stellarServer := &Server{
 		db: db,
 	}
-	db.StartCollector()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	db.StartCollector(ctx)
 
 	fmt.Println("StellarService RPC Started")
 	sPb.RegisterStellarServiceServer(server, stellarServer)
