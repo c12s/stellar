@@ -32,9 +32,10 @@ type Celestial struct {
 }
 
 type Config struct {
-	ConfVersion string   `yaml:"version"`
-	Address     string   `yaml:"address"`
-	Endpoints   []string `yaml:"db"`
-	Syncer      string   `yaml:"syncer"`
-	STopic      string   `yaml:"stopic"`
+	ConfVersion    string            `yaml:"version"`
+	Address        string            `yaml:"address"`
+	Endpoints      []string          `yaml:"db"`
+	Syncer         string            `yaml:"syncer"`
+	STopic         string            `yaml:"stopic"`
+	InstrumentConf map[string]string `yaml:"instrument"`
 }
